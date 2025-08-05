@@ -5,15 +5,13 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A modern and customizable calendar module for Nuxt 3, born from the need to simplify complex scheduling components.
+A modern and customizable calendar module for Nuxt 3, born from the need to simplify complex scheduling components. This is a community module, not officially maintained by the Nuxt team.
 
-<img width="1440" height="900" alt="Capture d’écran 2025-08-05 à 04 09 25" src="https://github.com/user-attachments/assets/94f3eeeb-bb38-4580-8d61-1404a57488c3" />
+<img width="1440" height="900" alt="Capture d'écran 2025-08-05 à 04 09 25" src="https://github.com/user-attachments/assets/94f3eeeb-bb38-4580-8d61-1404a57488c3" />
 
 ## The Story Behind This Module
 
 I originally built an admin dashboard for sports coaching sessions, and the calendar component I created manually was quite complex for me to maintain. That's when I decided to create my first Nuxt module to make this reusable and easier to manage. This module is the result of that journey - a clean, modular calendar solution that can be easily integrated into any Nuxt 3 project.
-
-## Features
 
 ## Features
 
@@ -49,11 +47,25 @@ yarn add nuxt-calendar-module
 export default defineNuxtConfig({
   modules: [
     'nuxt-calendar-module'
-  ]
+  ],
+  // Optional: Configure the module
+  calendar: {
+    prefix: 'MyApp',
+    defaultConfig: {
+      locale: 'fr-FR',
+      firstDayOfWeek: 1,
+      showWeekNumbers: true,
+      theme: 'auto'
+    }
+  }
 })
 ```
 
 That's it! You can now use the Calendar component in your Nuxt application ✨
+
+## Status
+
+🚧 **Community Module** - This module is maintained by the community and is not officially supported by the Nuxt team. Use at your own discretion.
 
 ## Usage
 
