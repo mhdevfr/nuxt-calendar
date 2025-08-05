@@ -1,0 +1,32 @@
+{
+  "calendar": {
+    "day": "Jour",
+    "week": "Semaine",
+    "month": "Mois",
+    "time": "Heure",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "today": "Aujourd'hui",
+    "weekFrom": "Semaine du",
+    "to": "au",
+    "gridLabel": "Calendrier de réservations",
+    "reservation": "Réservation",
+    "at": "à",
+    "newReservation": "Nouvelle réservation : {title}",
+    "noReservations": "Aucune réservation",
+    "loading": "Chargement...",
+    "error": "Erreur lors du chargement",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "view": "Voir",
+    "duration": "Durée",
+    "amount": "Montant",
+    "phone": "Téléphone",
+    "title": "Titre",
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
+    "description": "Description"
+  }
+}

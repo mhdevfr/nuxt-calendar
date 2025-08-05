@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .reservation-card {
+    @apply animate-in fade-in slide-in-from-bottom-2 duration-300;
+  }
+}

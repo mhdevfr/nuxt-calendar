@@ -1,0 +1,32 @@
+{
+  "calendar": {
+    "day": "Day",
+    "week": "Week", 
+    "month": "Month",
+    "time": "Time",
+    "previous": "Previous",
+    "next": "Next",
+    "today": "Today",
+    "weekFrom": "Week from",
+    "to": "to",
+    "gridLabel": "Reservation calendar",
+    "reservation": "Reservation",
+    "at": "at",
+    "newReservation": "New reservation: {title}",
+    "noReservations": "No reservations",
+    "loading": "Loading...",
+    "error": "Error loading",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "duration": "Duration",
+    "amount": "Amount",
+    "phone": "Phone",
+    "title": "Title",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "description": "Description"
+  }
+}

@@ -1,0 +1,183 @@
+/* Calendar Base Styles */
+.calendar {
+  --calendar-bg: #ffffff;
+  --calendar-border: #e2e8f0;
+  --calendar-text: #374151;
+  --calendar-text-muted: #6b7280;
+  --calendar-hover: #f3f4f6;
+  --calendar-selected: #3b82f6;
+  --calendar-selected-text: #ffffff;
+  --calendar-today: #fef3c7;
+  --calendar-today-border: #f59e0b;
+  --calendar-disabled: #f9fafb;
+  --calendar-disabled-text: #d1d5db;
+  
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--calendar-bg);
+  border: 1px solid var(--calendar-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Dark theme */
+.calendar[data-theme="dark"] {
+  --calendar-bg: #1f2937;
+  --calendar-border: #374151;
+  --calendar-text: #f9fafb;
+  --calendar-text-muted: #9ca3af;
+  --calendar-hover: #374151;
+  --calendar-selected: #3b82f6;
+  --calendar-selected-text: #ffffff;
+  --calendar-today: #451a03;
+  --calendar-today-border: #f59e0b;
+  --calendar-disabled: #111827;
+  --calendar-disabled-text: #4b5563;
+}
+
+/* Auto theme - respects system preference */
+@media (prefers-color-scheme: dark) {
+  .calendar[data-theme="auto"] {
+    --calendar-bg: #1f2937;
+    --calendar-border: #374151;
+    --calendar-text: #f9fafb;
+    --calendar-text-muted: #9ca3af;
+    --calendar-hover: #374151;
+    --calendar-selected: #3b82f6;
+    --calendar-selected-text: #ffffff;
+    --calendar-today: #451a03;
+    --calendar-today-border: #f59e0b;
+    --calendar-disabled: #111827;
+    --calendar-disabled-text: #4b5563;
+  }
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: var(--calendar-bg);
+  border-bottom: 1px solid var(--calendar-border);
+}
+
+.calendar-nav-button {
+  background: none;
+  border: 1px solid var(--calendar-border);
+  border-radius: 4px;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--calendar-text);
+  transition: all 0.2s;
+}
+
+.calendar-nav-button:hover {
+  background: var(--calendar-hover);
+}
+
+.calendar-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--calendar-text);
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--calendar-hover);
+}
+
+.calendar-weekday {
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--calendar-text-muted);
+  text-transform: uppercase;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-day {
+  position: relative;
+  min-height: 2.5rem;
+  padding: 0.5rem;
+  border-right: 1px solid var(--calendar-border);
+  border-bottom: 1px solid var(--calendar-border);
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--calendar-bg);
+}
+
+.calendar-day:hover:not(.calendar-day--disabled) {
+  background: var(--calendar-hover);
+}
+
+.calendar-day--other-month {
+  color: var(--calendar-text-muted);
+  background: var(--calendar-hover);
+}
+
+.calendar-day--today {
+  background: var(--calendar-today);
+  border-color: var(--calendar-today-border);
+  font-weight: 600;
+}
+
+.calendar-day--selected {
+  background: var(--calendar-selected);
+  color: var(--calendar-selected-text);
+}
+
+.calendar-day--disabled {
+  background: var(--calendar-disabled);
+  color: var(--calendar-disabled-text);
+  cursor: not-allowed;
+}
+
+.calendar-day-number {
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.calendar-events {
+  margin-top: 0.25rem;
+}
+
+.calendar-event {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.25rem;
+  margin: 0.125rem 0;
+  border-radius: 2px;
+  background: var(--calendar-selected);
+  color: var(--calendar-selected-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .calendar-header {
+    padding: 0.75rem;
+  }
+  
+  .calendar-title {
+    font-size: 1rem;
+  }
+  
+  .calendar-day {
+    min-height: 2rem;
+    padding: 0.25rem;
+  }
+  
+  .calendar-day-number {
+    font-size: 0.75rem;
+  }
+  
+  .calendar-event {
+    font-size: 0.625rem;
+  }
+}
