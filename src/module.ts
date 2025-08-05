@@ -62,7 +62,7 @@ export default defineNuxtModule<ModuleOptions>({
       try {
         await installModule('@nuxtjs/i18n')
       } catch (error) {
-        console.warn('[@nuxtjs/calendar] i18n module not found, skipping i18n support')
+        // out error
       }
     }
 
@@ -86,14 +86,14 @@ export default defineNuxtModule<ModuleOptions>({
 
 
     if (!nuxt.options.css.includes('lucide-vue-next')) {
-      console.info('[@nuxtjs/calendar] Consider installing lucide-vue-next for icons')
+      // out error
     }
 
 
     try {
       await installModule('@vueuse/nuxt')
     } catch (error) {
-      console.warn('[@nuxtjs/calendar] VueUse not found, some features may not work')
+      // out error
     }
   }
 })

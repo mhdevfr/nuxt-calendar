@@ -10,20 +10,20 @@
           :class="{ 'btn-active': currentView === 'day' }"
           @click="changeView('day')"
         >
-          Jour
+          <span class="btn-text">Jour</span>
         </button>
         <button 
-          class="btn "
+          class="btn"
           :class="{ 'btn-active': currentView === 'week' }"
           @click="changeView('week')"
         >
-          Semaine
+          <span class="btn-text">Semaine</span>
         </button>
         <button class="btn" @click="navigateDate('prev')">
-          ←
+          <span class="btn-text">←</span>
         </button>
         <button class="btn" @click="navigateDate('next')">
-          →
+          <span class="btn-text">→</span>
         </button>
       </div>
     </div>
@@ -38,7 +38,7 @@
                 {{ formatDayHeader(currentDate) }}
               </th>
               <th v-else v-for="(day, index) in days" :key="day" class="day-column">
-                <div>{{ day }}</div>
+                <div class="day-name">{{ day }}</div>
                 <div class="day-date">{{ formatDayDate(getDateForDay(index)) }}</div>
               </th>
             </tr>
@@ -120,7 +120,7 @@ const emit = defineEmits<{
 const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
 const hours = [...props.workingHours.morning, ...props.workingHours.afternoon]
 const currentView = ref<'day' | 'week'>(props.isMobile ? 'day' : 'week')
-const currentDate = ref(new Date())
+const currentDate = ref(new Date('2025-08-04'))
 
 const formatCurrentDate = computed(() => {
   const date = currentDate.value
@@ -150,8 +150,11 @@ const formatCurrentDate = computed(() => {
 function getWeekStart(date: Date): Date {
   const d = new Date(date)
   const day = d.getDay()
+
   const diff = d.getDate() - day + (day === 0 ? -6 : 1)
-  return new Date(d.setDate(diff))
+  const weekStart = new Date(d)
+  weekStart.setDate(diff)
+  return weekStart
 }
 
 function formatDayHeader(date: Date): string {
@@ -195,15 +198,16 @@ function getReservationsForHour(hour: number): Reservation[] {
 
 function getReservationsForDayAndHour(dayIndex: number, hour: number): Reservation[] {
   const date = getDateForDay(dayIndex)
-  return props.reservations.filter(reservation => {
+  const filtered = props.reservations.filter(reservation => {
     const reservationDate = new Date(reservation.start_date)
     const sameDay = 
       reservationDate.getFullYear() === date.getFullYear() &&
       reservationDate.getMonth() === date.getMonth() &&
       reservationDate.getDate() === date.getDate()
     const reservationHour = reservationDate.getHours()
-    return sameDay && reservationHour === hour
+        return sameDay && reservationHour === hour
   })
+  return filtered
 }
 
 function getReservationStyle(reservation: Reservation, hour: number) {
@@ -260,7 +264,8 @@ watch(() => props.reservations, (newReservations) => {
 
 onMounted(() => {
   if (currentView.value === 'week') {
-    currentDate.value = getWeekStart(currentDate.value)
+    const weekStart = getWeekStart(currentDate.value)
+    currentDate.value = weekStart
   }
 })
 </script>
@@ -284,6 +289,8 @@ onMounted(() => {
   padding: 1rem;
   background: #f8fafc;
   border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .calendar-title h1 {
@@ -296,6 +303,7 @@ onMounted(() => {
 .calendar-controls {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -306,6 +314,11 @@ onMounted(() => {
   cursor: pointer;
   font-size: 0.875rem;
   transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-text {
+  display: inline-block;
 }
 
 .btn:hover {
@@ -320,11 +333,13 @@ onMounted(() => {
 
 .calendar-content {
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .calendar-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px;
 }
 
 .time-column {
@@ -335,6 +350,11 @@ onMounted(() => {
 .day-column {
   min-width: 150px;
   text-align: center;
+}
+
+.day-name {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
 th {
@@ -380,7 +400,7 @@ th {
 }
 
 .reservation-card:hover {
-  transform: scale(1.02);
+  opacity: 0.8;
 }
 
 .reservation-content {
@@ -400,27 +420,161 @@ th {
   opacity: 0.8;
 }
 
+@media (max-width: 1024px) {
+  .calendar-container {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  .calendar-header {
+    padding: 0.75rem;
+  }
+  
+  .calendar-title h1 {
+    font-size: 1.125rem;
+  }
+  
+  .btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+  
+  .day-column {
+    min-width: 120px;
+  }
+  
+  .calendar-cell {
+    height: 70px;
+  }
+}
+
 @media (max-width: 768px) {
   .calendar-header {
     flex-direction: column;
-    gap: 1rem;
+    align-items: stretch;
+    gap: 0.75rem;
   }
   
   .calendar-title h1 {
     font-size: 1rem;
+    text-align: center;
+  }
+  
+  .calendar-controls {
+    justify-content: center;
   }
   
   .btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
+    flex: 1;
+    min-width: 60px;
+  }
+  
+  .calendar-content {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+  
+  .calendar-table {
+    min-width: 500px;
+  }
+  
+  .time-column {
+    width: 60px;
+    min-width: 60px;
+  }
+  
+  .day-column {
+    min-width: 100px;
   }
   
   .calendar-cell {
     height: 60px;
   }
   
+  .reservation-content {
+    padding: 0.25rem;
+  }
+  
+  .reservation-title {
+    font-size: 0.6875rem;
+  }
+  
+  .reservation-time {
+    font-size: 0.5625rem;
+  }
+  
+  th {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.75rem;
+  }
+  
+  .time-cell {
+    padding: 0.25rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-header {
+    padding: 0.5rem;
+  }
+  
+  .calendar-title h1 {
+    font-size: 0.875rem;
+  }
+  
+  .btn {
+    padding: 0.25rem 0.375rem;
+    font-size: 0.6875rem;
+    min-width: 50px;
+  }
+  
+  .calendar-table {
+    min-width: 400px;
+  }
+  
+  .time-column {
+    width: 50px;
+    min-width: 50px;
+  }
+  
   .day-column {
-    min-width: 100px;
+    min-width: 80px;
+  }
+  
+  .calendar-cell {
+    height: 50px;
+  }
+  
+  .reservation-content {
+    padding: 0.125rem;
+  }
+  
+  .reservation-title {
+    font-size: 0.625rem;
+    margin-bottom: 0.125rem;
+  }
+  
+  .reservation-time {
+    font-size: 0.5rem;
+  }
+  
+  th {
+    padding: 0.375rem 0.125rem;
+    font-size: 0.6875rem;
+  }
+  
+  .time-cell {
+    padding: 0.125rem;
+    font-size: 0.6875rem;
+  }
+  
+  .day-date {
+    font-size: 0.625rem;
   }
 }
     

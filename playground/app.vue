@@ -2,20 +2,23 @@
   <div class="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors" :class="currentTheme">
     <div class="max-w-6xl mx-auto p-8">
       <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">🗓️ Nuxt Calendar Module Playground</h1>
-        <button 
-          class="px-4 py-2 bg-gray-50 hover:bg-gray-800 border border-gray-950 border-opacity-15 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-gray-900 dark:text-gray-900 rounded-lg transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg flex items-center gap-2"
+        <div class="flex items-center gap-2 lg:justify-between justify-end w-full">
+          <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Nuxt Calendar Module Playground</h1>
+
+          <button 
+          class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500 flex items-center gap-2"
           @click="toggleTheme"
         >
-          <span v-if="currentTheme === 'dark'">Mode Clair</span>
-          <span v-else>Mode Sombre</span>
+          <span v-if="currentTheme === 'dark'">Light</span>
+          <span v-else>Dark</span>
         </button>
+        </div>
       </div>
       
       <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 mb-8">
-        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">📅 Votre Calendar de réservations</h2>
         <CalendarComponent
           :reservations="sampleReservations"
+          :events="events"
           :working-hours="workingHours"
           :is-mobile="false"
           locale="fr-FR"
@@ -27,10 +30,6 @@
           @new-reservation="onNewReservation"
           @reservations-updated="onReservationsUpdated"
         />
-        <SimpleCalendar :events="events" :locale="locale" :theme="theme" :timezone="timezone" :is-mobile="isMobile" />
-        <Calendar :events="events" :locale="locale" :theme="theme" :timezone="timezone" :is-mobile="isMobile" />
-        <BaseCalendar :events="events" :locale="locale" :theme="theme" :timezone="timezone" :is-mobile="isMobile" />
-
       </div>
 
       <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 mb-8">
@@ -51,13 +50,13 @@
         </div>
         
         <div class="flex flex-wrap gap-2 mb-6">
-          <button @click="goToPreviousMonth" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">← Mois précédent</button>
-          <button @click="goToToday" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors">Aujourd'hui</button>
-          <button @click="goToNextMonth" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">Mois suivant →</button>
-          <button @click="addSampleEvent" class="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors">Ajouter événement</button>
-          <button @click="addSampleReservation" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-colors">Ajouter réservation aléatoire</button>
-          <button @click="clearAllReservations" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">Vider tout</button>
-          <button @click="showReservationsList" class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">Voir toutes les réservations ({{ sampleReservations.length }})</button>
+          <button @click="goToPreviousMonth" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">← Mois précédent</button>
+          <button @click="goToToday" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Aujourd'hui</button>
+          <button @click="goToNextMonth" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Mois suivant →</button>
+          <button @click="addSampleEvent" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Ajouter événement</button>
+          <button @click="addSampleReservation" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Ajouter réservation aléatoire</button>
+          <button @click="clearAllReservations" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Vider tout</button>
+          <button @click="showReservationsList" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Voir toutes les réservations ({{ sampleReservations.length }})</button>
         </div>
         
         <div class="grid grid-cols-7 gap-2">
@@ -102,18 +101,18 @@ const reservationCalendar = useReservationCalendar({
 const sampleReservations = ref([
   {
     id: '1',
-    title: 'Rendez-vous Client A',
-    start_date: new Date().toISOString(),
-    end_date: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+    title: 'Conférence tech',
+    start_date: '2025-08-04T14:00:00+02:00',
+    end_date: '2025-08-04T15:00:00+02:00',
     duration: 60,
     amount: 150,
     phone: '+33123456789'
   },
   {
     id: '2',
-    title: 'Réunion équipe',
-    start_date: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 3 * 60 * 60 * 1000).toISOString(),
+    title: 'Entretien embauche',
+    start_date: '2025-08-04T16:00:00+02:00',
+    end_date: '2025-08-04T17:00:00+02:00',
     duration: 60,
     amount: 0
   },
@@ -121,8 +120,8 @@ const sampleReservations = ref([
   {
     id: '3',
     title: 'Formation développeur',
-    start_date: new Date(Date.now() + 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 24 * 60 * 60 * 1000 + 11 * 60 * 60 * 1000).toISOString(),
+    start_date: '2025-08-05T09:00:00+02:00',
+    end_date: '2025-08-05T11:00:00+02:00',
     duration: 120,
     amount: 300,
     phone: '+33987654321'
@@ -131,8 +130,8 @@ const sampleReservations = ref([
   {
     id: '4',
     title: 'Présentation client VIP',
-    start_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 14 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 16 * 60 * 60 * 1000).toISOString(),
+    start_date: '2025-08-06T14:00:00+02:00',
+    end_date: '2025-08-06T16:00:00+02:00',
     duration: 120,
     amount: 500,
     phone: '+33111222333'
@@ -141,8 +140,8 @@ const sampleReservations = ref([
   {
     id: '5',
     title: 'Audit sécurité',
-    start_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000 + 10 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000 + 12 * 60 * 60 * 1000).toISOString(),
+    start_date: '2025-08-07T10:00:00+02:00',
+    end_date: '2025-08-07T12:00:00+02:00',
     duration: 120,
     amount: 400,
     phone: '+33444555666'
@@ -150,9 +149,9 @@ const sampleReservations = ref([
 
   {
     id: '6',
-    title: 'Conférence tech',
-    start_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000 + 17 * 60 * 60 * 1000).toISOString(),
+    title: 'Réunion équipe',
+    start_date: '2025-08-08T09:00:00+02:00',
+    end_date: '2025-08-08T17:00:00+02:00',
     duration: 480,
     amount: 0,
     phone: ''
@@ -160,42 +159,42 @@ const sampleReservations = ref([
   
   {
     id: '7',
-    title: 'Entretien embauche',
-    start_date: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000 + 11 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000 + 12 * 60 * 60 * 1000).toISOString(),
-    duration: 60,
-    amount: 0,
-    phone: '+33777888999'
-  },
-  
-  {
-    id: '8',
     title: 'Maintenance serveur',
-    start_date: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000 + 15 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000 + 17 * 60 * 60 * 1000).toISOString(),
+    start_date: '2025-08-09T15:00:00+02:00',
+    end_date: '2025-08-09T17:00:00+02:00',
     duration: 120,
     amount: 200,
     phone: '+33555444333'
   },
   
   {
-    id: '9',
+    id: '8',
     title: 'Formation week-end',
-    start_date: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000 + 10 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000 + 16 * 60 * 60 * 1000).toISOString(),
+    start_date: '2025-08-10T10:00:00+02:00',
+    end_date: '2025-08-10T16:00:00+02:00',
     duration: 360,
     amount: 600,
     phone: '+33222333444'
   },
   
-    {
-    id: '10',
+  {
+    id: '9',
     title: 'Séminaire entreprise',
-    start_date: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000).toISOString(),
-    end_date: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000 + 18 * 60 * 60 * 1000).toISOString(),  
+    start_date: '2025-08-11T09:00:00+02:00',
+    end_date: '2025-08-11T18:00:00+02:00',
     duration: 540,
     amount: 1200,
     phone: '+33666777888'
+  },
+  
+  {
+    id: '10',
+    title: 'Rendez-vous Client A',
+    start_date: '2025-08-12T11:00:00+02:00',
+    end_date: '2025-08-12T12:00:00+02:00',
+    duration: 60,
+    amount: 150,
+    phone: '+33777888999'
   }
 ])
 
@@ -243,23 +242,23 @@ onMounted(() => {
 
 
 function onReservationClick(reservation) {
-  console.log('Réservation cliquée:', reservation)
+  // DO something
 }
 
 function onViewChange(view, date) {
-  console.log('Vue changée:', view, date)
+  // DO something
 }
 
 function onDateChange(date) {
-  console.log('Date changée:', date)
+  // DO something
 }
 
 function onNewReservation(reservation) {
-  console.log('Nouvelle réservation:', reservation)
+  // DO something
 }
 
 function onReservationsUpdated(reservations) {
-  console.log('Réservations mises à jour:', reservations.length)
+  // DO something
 }
 
 function addSampleEvent() {
@@ -312,7 +311,6 @@ function addSampleReservation() {
       phone: `+3361234${Math.floor(Math.random() * 90) + 10}${Math.floor(Math.random() * 90) + 10}`
     }
     sampleReservations.value.push(newReservation)
-    console.log('Nouvelle réservation ajoutée (durée ajustée):', newReservation)
   } else {
     const endTime = startTime + selectedDuration * 60 * 1000
     
@@ -326,33 +324,26 @@ function addSampleReservation() {
       phone: `+3361234${Math.floor(Math.random() * 90) + 10}${Math.floor(Math.random() * 90) + 10}`
     }
     sampleReservations.value.push(newReservation)
-    console.log('Nouvelle réservation ajoutée:', newReservation)
   }
 }
 
 function onTestEvent(message) {
-  console.log('Test Event reçu:', message)
+  // DO something
 }
 
 function clearAllReservations() {
   sampleReservations.value = []
-  console.log('Toutes les réservations ont été supprimées')
+  // DO something
 }
 
 function showReservationsList() {
-  console.log('=== LISTE COMPLÈTE DES RÉSERVATIONS ===')
+  // DO something
   sampleReservations.value.forEach((reservation, index) => {
     const startDate = new Date(reservation.start_date)
     const endDate = new Date(reservation.end_date)
-    console.log(`${index + 1}. ${reservation.title}`)
-    console.log(`   Date: ${startDate.toLocaleDateString('fr-FR')}`)
-    console.log(`   Heure: ${startDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - ${endDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`)
-    console.log(`   Durée: ${reservation.duration} min`)
-    console.log(`   Montant: ${reservation.amount}€`)
-    console.log(`   Téléphone: ${reservation.phone || 'Non renseigné'}`)
-    console.log('   ---')
+    // DO something
   })
-  console.log(`Total: ${sampleReservations.value.length} réservations`)
+  // DO something
 }
 </script>
 

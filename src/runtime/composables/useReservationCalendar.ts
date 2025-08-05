@@ -1,4 +1,4 @@
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, readonly } from 'vue'
 import type { Reservation, WorkingHours } from '../types'
 
 export function useReservationCalendar(config?: {
@@ -6,8 +6,14 @@ export function useReservationCalendar(config?: {
   timezone?: string
   workingHours?: WorkingHours
 }) {
-  const runtimeConfig = useRuntimeConfig()
-  const defaultConfig = runtimeConfig.public.calendar
+  const defaultConfig = {
+    locale: 'fr-FR',
+    timezone: 'Europe/Paris',
+    workingHours: {
+      morning: [9, 10, 11, 12],
+      afternoon: [14, 15, 16]
+    }
+  }
   
   const calendarConfig = reactive({
     locale: config?.locale || defaultConfig.locale || 'fr-FR',

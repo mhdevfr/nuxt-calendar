@@ -49,6 +49,7 @@
 <script setup lang="ts">
 import type { CalendarEvent } from '../types'
 import { useCalendar } from '../composables/useCalendar'
+import { watch, watchEffect } from 'vue'
 
 interface Props {
   events?: CalendarEvent[]

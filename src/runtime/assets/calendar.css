@@ -11,7 +11,6 @@
   --calendar-today-border: #f59e0b;
   --calendar-disabled: #f9fafb;
   --calendar-disabled-text: #d1d5db;
-  
   font-family: system-ui, -apple-system, sans-serif;
   background: var(--calendar-bg);
   border: 1px solid var(--calendar-border);

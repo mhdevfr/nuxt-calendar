@@ -7,14 +7,14 @@
       <div class="flex gap-2">
         <button 
           class="px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-sm transition-all hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200"
-          :class="{ 'bg-blue-500 text-white border-blue-500 dark:bg-blue-600 dark:border-blue-600': currentView === 'day' }"
+          :class="{ 'bg-blue-500 text-gray-950 border-blue-500 dark:bg-blue-600 dark:border-blue-600': currentView === 'day' }"
           @click="changeView('day')"
         >
           Jour
         </button>
         <button 
-          class="px-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded text-sm transition-all hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200"
-          :class="{ 'bg-blue-500 text-white border-blue-500 dark:bg-blue-600 dark:border-blue-600': currentView === 'week' }"
+          class="px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-sm transition-all hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200"
+          :class="{ 'bg-blue-500 text-gray-900 border-blue-500 dark:bg-blue-600 dark:border-blue-600': currentView === 'week' }"
           @click="changeView('week')"
         >
           Semaine
@@ -52,7 +52,7 @@
                 <div
                   v-for="reservation in getReservationsForHour(hour)"
                   :key="reservation.id"
-                  class="reservation-card bg-gray-800 dark:bg-gray-700 text-white rounded cursor-pointer overflow-hidden transition-transform hover:scale-105"
+                  class="reservation-card bg-gray-800 dark:bg-gray-700 text-white rounded cursor-pointer overflow-hidden transition-transform "
                   :style="getReservationStyle(reservation, hour)"
                   @click="handleReservationClick(reservation)"
                 >
@@ -66,7 +66,7 @@
                 <div
                   v-for="reservation in getReservationsForDayAndHour(index, hour)"
                   :key="reservation.id"
-                  class="reservation-card bg-gray-800 dark:bg-gray-700 text-white rounded cursor-pointer overflow-hidden transition-transform hover:scale-105"
+                  class="reservation-card bg-gray-800 dark:bg-gray-700 text-white rounded cursor-pointer overflow-hidden transition-transform hover:opacity-80"
                   :style="getReservationStyle(reservation, hour)"
                   @click="handleReservationClick(reservation)"
                 >

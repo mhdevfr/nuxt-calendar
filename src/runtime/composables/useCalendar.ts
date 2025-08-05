@@ -1,8 +1,14 @@
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, readonly } from 'vue'
 import type { CalendarDate, CalendarEvent, CalendarConfig } from '../types'
 
 export function useCalendar(config?: Partial<CalendarConfig>) {
-  const defaultConfig = useRuntimeConfig().public.calendar
+  // Fallback config si useRuntimeConfig n'est pas disponible
+  const defaultConfig = {
+    locale: 'fr-FR',
+    firstDayOfWeek: 1,
+    showWeekNumbers: false,
+    theme: 'auto'
+  }
   const calendarConfig = reactive({
     ...defaultConfig,
     ...config
@@ -22,13 +28,12 @@ export function useCalendar(config?: Partial<CalendarConfig>) {
   })
 
   const weekDays = computed(() => {
-    const days = []
-    const date = new Date()
+    const days: string[] = []
     const startDay = calendarConfig.firstDayOfWeek
     
     for (let i = 0; i < 7; i++) {
       const dayIndex = (startDay + i) % 7
-      date.setDate(date.getDate() - date.getDay() + dayIndex)
+      const date = new Date(2024, 0, 1 + dayIndex) 
       days.push(
         new Intl.DateTimeFormat(calendarConfig.locale, { 
           weekday: 'short' 

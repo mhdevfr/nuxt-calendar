@@ -1,4 +1,4 @@
-# @nuxtjs/calendar
+# nuxt-calendar-module
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -30,25 +30,25 @@ I originally built an admin dashboard for sports coaching sessions, and the cale
 
 ## Quick Installation
 
-1. Add `@nuxtjs/calendar` to your project dependencies:
+1. Add `nuxt-calendar-module` to your project dependencies:
 
 ```bash
 # npm
-npm install @nuxtjs/calendar
+npm install nuxt-calendar-module
 
 # pnpm
-pnpm add @nuxtjs/calendar
+pnpm add nuxt-calendar-module
 
 # yarn
-yarn add @nuxtjs/calendar
+yarn add nuxt-calendar-module
 ```
 
-2. Add `@nuxtjs/calendar` to the `modules` section of `nuxt.config.ts`:
+2. Add `nuxt-calendar-module` to the `modules` section of `nuxt.config.ts`:
 
 ```js
 export default defineNuxtConfig({
   modules: [
-    '@nuxtjs/calendar'
+    'nuxt-calendar-module'
   ]
 })
 ```

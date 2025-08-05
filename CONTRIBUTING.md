@@ -1,6 +1,6 @@
 # Guide de Contribution
 
-Merci de votre intérêt pour contribuer à `@nuxtjs/calendar` ! 🗓️
+Merci de votre intérêt pour contribuer à `nuxt-calendar-module` ! 🗓️
 
 ## Configuration de l'environnement de développement
 
