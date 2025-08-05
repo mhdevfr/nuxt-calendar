@@ -1,7 +1,8 @@
 # nuxt-calendar-module
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
+<!-- Badges will be available after first release -->
+<!-- [![npm version][npm-version-src]][npm-version-href] -->
+<!-- [![npm downloads][npm-downloads-src]][npm-downloads-href] -->
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
@@ -66,6 +67,47 @@ That's it! You can now use the Calendar component in your Nuxt application ✨
 ## Status
 
 🚧 **Community Module** - This module is maintained by the community and is not officially supported by the Nuxt team. Use at your own discretion.
+
+## Development
+
+### Local Development
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/nuxt-module-calendar.git
+cd nuxt-module-calendar
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Start the playground**
+```bash
+cd playground
+npm run dev
+```
+
+4. **Run tests**
+```bash
+npm run test
+```
+
+### Testing the Module
+
+You can test the module locally before publishing:
+
+```bash
+# Build the module
+npm run build
+
+# Pack it locally
+npm pack
+
+# Install in a test project
+npm install ../path/to/nuxt-calendar-module-1.0.0.tgz
+```
 
 ## Usage
 
