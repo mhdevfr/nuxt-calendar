@@ -7,6 +7,8 @@
 
 A modern and customizable calendar module for Nuxt 3, born from the need to simplify complex scheduling components.
 
+<img width="1440" height="900" alt="Capture d’écran 2025-08-05 à 04 09 25" src="https://github.com/user-attachments/assets/94f3eeeb-bb38-4580-8d61-1404a57488c3" />
+
 ## The Story Behind This Module
 
 I originally built an admin dashboard for sports coaching sessions, and the calendar component I created manually was quite complex for me to maintain. That's when I decided to create my first Nuxt module to make this reusable and easier to manage. This module is the result of that journey - a clean, modular calendar solution that can be easily integrated into any Nuxt 3 project.
