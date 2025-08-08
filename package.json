@@ -29,18 +29,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.8.0"
   },
-  "peerDependencies": {
-    "@nuxtjs/i18n": "^8.0.0",
-    "lucide-vue-next": "^0.290.0"
-  },
-  "peerDependenciesMeta": {
-    "@nuxtjs/i18n": {
-      "optional": true
-    },
-    "lucide-vue-next": {
-      "optional": true
-    }
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",

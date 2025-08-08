@@ -74,7 +74,10 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import SimpleCalendar from '../src/runtime/components/SimpleCalendar.vue'
+import CalendarComponent from 'nuxt-calendar-module/runtime/components/CalendarComponent.vue'
+import SimpleCalendar from 'nuxt-calendar-module/runtime/components/SimpleCalendar.vue'
+import { useCalendar } from 'nuxt-calendar-module/runtime/composables/useCalendar'
+import { useReservationCalendar } from 'nuxt-calendar-module/runtime/composables/useReservationCalendar'
 
 const calendar = useCalendar({
   locale: 'fr-FR'
