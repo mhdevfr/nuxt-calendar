@@ -90,10 +90,6 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
 
-    try {
-      await installModule('@vueuse/nuxt')
-    } catch (error) {
-      // out error
-    }
+    // VueUse removed to avoid conflicts in host projects
   }
 })

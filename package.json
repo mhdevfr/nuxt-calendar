@@ -1,6 +1,6 @@
 {
   "name": "nuxt-calendar-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A customizable calendar component module for Nuxt 3",
   "author": "Milan Herbe",
   "license": "MIT",
@@ -10,7 +10,8 @@
       "types": "./dist/types.d.ts",
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
-    }
+    },
+    "./runtime/*": "./dist/runtime/*"
   },
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
@@ -30,7 +31,6 @@
   },
   "peerDependencies": {
     "@nuxtjs/i18n": "^8.0.0",
-    "@vueuse/nuxt": "^10.0.0",
     "lucide-vue-next": "^0.290.0"
   },
   "peerDependenciesMeta": {
@@ -50,7 +50,6 @@
     "@types/node": "^20.8.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/test-utils": "^2.4.6",
-    "@vueuse/nuxt": "^11.0.0",
     "changelogen": "^0.5.5",
     "eslint": "^8.52.0",
     "jsdom": "^26.1.0",
