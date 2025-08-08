@@ -6,7 +6,7 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A modern and customizable calendar module for Nuxt 3, born from the need to simplify complex scheduling components. This is a community module, not officially maintained by the Nuxt team.
+A modern and customizable calendar package for Vue 3 / Nuxt 3, born from the need to simplify complex scheduling components. This is a community package, not officially maintained by the Nuxt team.
 
 <img width="1440" height="900" alt="Capture d'écran 2025-08-05 à 04 09 25" src="https://github.com/user-attachments/assets/94f3eeeb-bb38-4580-8d61-1404a57488c3" />
 
@@ -16,7 +16,7 @@ I originally built an admin dashboard for sports coaching sessions, and the cale
 
 ## Features
 
-- ✨ **Auto-import** - Components and composables automatically imported
+- ✨ **Easy imports** - Import components and composables directly
 - 🎨 **Themes** - Light, dark and automatic theme support
 - 🌍 **Internationalization** - Complete locale support
 - 📱 **Responsive** - Adapted for mobile and tablets
@@ -42,27 +42,24 @@ pnpm add nuxt-calendar-module
 yarn add nuxt-calendar-module
 ```
 
-2. Add `nuxt-calendar-module` to the `modules` section of `nuxt.config.ts`:
+2. Add the CSS (recommended)
 
-```js
+Nuxt 3 (`nuxt.config.ts`):
+
+```ts
 export default defineNuxtConfig({
-  modules: [
-    'nuxt-calendar-module'
-  ],
-  // Optional: Configure the module
-  calendar: {
-    prefix: 'MyApp',
-    defaultConfig: {
-      locale: 'fr-FR',
-      firstDayOfWeek: 1,
-      showWeekNumbers: true,
-      theme: 'auto'
-    }
-  }
+  css: ['nuxt-calendar-module/runtime/assets/calendar.css']
 })
 ```
 
-That's it! You can now use the Calendar component in your Nuxt application ✨
+ou import global (ex. `app.vue`):
+
+```ts
+// app.vue or a global entry
+import 'nuxt-calendar-module/runtime/assets/calendar.css'
+```
+
+That's it! You can now import and use the Calendar components in your application ✨
 
 ## Status
 
@@ -94,7 +91,7 @@ npm run dev
 npm run test
 ```
 
-### Testing the Module
+### Testing the Package
 
 You can test the module locally before publishing:
 
@@ -106,20 +103,20 @@ npm run build
 npm pack
 
 # Install in a test project
-npm install ../path/to/nuxt-calendar-module-1.0.0.tgz
+npm install ../path/to/nuxt-calendar-module-1.0.1.tgz
 ```
 
 ## Usage
 
-### Recommended usage with CalendarComponent
+### Quick usage with CalendarComponent
 
 ```vue
 <template>
   <div>
     <CalendarComponent 
-      :locale="$i18n.locale.value"
-      :timezone="userTimezone"
-      :theme="$colorMode.value"
+      :locale="'fr-FR'"
+      :timezone="'Europe/Paris'"
+      :theme="'auto'"
       :reservations="reservations"
       @new-reservation="handleNewReservation"
       @reservation-click="handleClick"
@@ -127,7 +124,11 @@ npm install ../path/to/nuxt-calendar-module-1.0.0.tgz
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref } from 'vue'
+import 'nuxt-calendar-module/runtime/assets/calendar.css'
+import CalendarComponent from 'nuxt-calendar-module/runtime/components/CalendarComponent.vue'
+
 const reservations = ref([
   {
     id: '1',
@@ -138,19 +139,17 @@ const reservations = ref([
   }
 ])
 
-const userTimezone = 'Europe/Paris'
-
-function handleNewReservation(reservation) {
+function handleNewReservation(reservation: any) {
   reservations.value.push(reservation)
 }
 
-function handleClick(reservation) {
+function handleClick(reservation: any) {
   console.log('Reservation clicked:', reservation)
 }
 </script>
 ```
 
-### Direct Calendar component usage
+### Calendar component usage (direct import)
 
 ```vue
 <template>
@@ -167,64 +166,62 @@ function handleClick(reservation) {
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import 'nuxt-calendar-module/runtime/assets/calendar.css'
+import Calendar from 'nuxt-calendar-module/runtime/components/Calendar.vue'
+
+const reservations: any[] = []
 const workingHours = {
   morning: [9, 10, 11, 12],
   afternoon: [14, 15, 16, 17]
 }
 
-function onReservationClick(reservation) {
+function onReservationClick(reservation: any) {
   console.log('Reservation clicked:', reservation)
 }
 
-function onViewChange(view, date) {
+function onViewChange(view: 'day' | 'week', date: Date) {
   console.log('View changed:', view, date)
 }
 </script>
 ```
 
-### Simple calendar with events
+### Simple calendar with events (direct import)
 
 ```vue
 <template>
   <div>
     <SimpleCalendar 
       :events="events"
-      :locale="$i18n.locale.value"
-      :theme="$colorMode.value"
+      :locale="'fr-FR'"
+      :theme="'auto'"
       @date-select="onDateSelect"
       @event-click="onEventClick"
     />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref } from 'vue'
+import 'nuxt-calendar-module/runtime/assets/calendar.css'
+import SimpleCalendar from 'nuxt-calendar-module/runtime/components/SimpleCalendar.vue'
+
 const events = ref([
-  {
-    id: 1,
-    title: 'Team Meeting',
-    date: new Date(),
-    color: '#3b82f6'
-  },
-  {
-    id: 2,
-    title: 'Client Presentation',
-    date: new Date(Date.now() + 24 * 60 * 60 * 1000), // Tomorrow
-    color: '#ef4444'
-  }
+  { id: 1, title: 'Team Meeting', date: new Date(), color: '#3b82f6' },
+  { id: 2, title: 'Client Presentation', date: new Date(Date.now() + 86400000), color: '#ef4444' }
 ])
 
-function onDateSelect(date) {
+function onDateSelect(date: Date) {
   console.log('Date selected:', date)
 }
 
-function onEventClick(event) {
+function onEventClick(event: any) {
   console.log('Event clicked:', event)
 }
 </script>
 ```
 
-### With composables
+### With composables (direct import)
 
 ```vue
 <template>
@@ -233,16 +230,15 @@ function onEventClick(event) {
     <button @click="goToPreviousMonth">← Previous</button>
     <button @click="goToNextMonth">Next →</button>
     <p>Selected date: {{ selectedDate?.toLocaleDateString() }}</p>
-    
-    <!-- Use your own components with composable data -->
-    <div class="custom-calendar">
-      <!-- Your custom implementation -->
-    </div>
+    <div class="custom-calendar"></div>
   </div>
-</template>
+  </template>
 
-<script setup>
-// Generic calendar composable
+<script setup lang="ts">
+import 'nuxt-calendar-module/runtime/assets/calendar.css'
+import { useCalendar } from 'nuxt-calendar-module/runtime/composables/useCalendar'
+import { useReservationCalendar } from 'nuxt-calendar-module/runtime/composables/useReservationCalendar'
+
 const {
   currentYear,
   monthName,
@@ -251,45 +247,24 @@ const {
   goToNextMonth,
   goToPreviousMonth,
   addEvent
-} = useCalendar({
-  locale: 'fr-FR'
-})
+} = useCalendar({ locale: 'fr-FR' })
 
-// Reservation calendar composable
 const reservationCalendar = useReservationCalendar({
   locale: 'fr-FR',
   timezone: 'Europe/Paris'
 })
 
-// Add an event
-addEvent({
-  id: 1,
-  title: 'Team Meeting',
-  date: new Date(),
-  color: '#3b82f6'
-})
+addEvent({ id: 1, title: 'Team Meeting', date: new Date(), color: '#3b82f6' })
 </script>
 ```
 
 ## Configuration
 
-Configure the module in your `nuxt.config.ts`:
+No Nuxt module configuration is required. Optionally, add the CSS in `nuxt.config.ts`:
 
-```js
+```ts
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/calendar'],
-  calendar: {
-    // Prefix for auto-imported components
-    prefix: 'Nuxt',
-    
-    // Default configuration
-    defaultConfig: {
-      locale: 'fr-FR',
-      firstDayOfWeek: 1, // 0 = Sunday, 1 = Monday
-      showWeekNumbers: false,
-      theme: 'auto' // 'light', 'dark', 'auto'
-    }
-  }
+  css: ['nuxt-calendar-module/runtime/assets/calendar.css']
 })
 ```
 
