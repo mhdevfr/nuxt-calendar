@@ -1,6 +1,6 @@
 {
   "name": "nuxt-calendar-module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A customizable calendar component module for Nuxt 3",
   "author": "Milan Herbe",
   "license": "MIT",
