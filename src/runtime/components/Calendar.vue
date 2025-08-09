@@ -1,5 +1,5 @@
 <template>
-  <div class="calendar-container">
+  <div class="calendar-container" :data-theme="theme">
     <div class="calendar-header">
       <div class="calendar-title">
         <h1>{{ formatCurrentDate }}</h1>
@@ -579,40 +579,47 @@ th {
   }
 }
     
+/* Dark theme via data attribute */
+.calendar-container[data-theme="dark"] {
+  background: #0a0a0a;
+  border-color: rgba(249, 250, 251, 0.2);
+}
+.calendar-container[data-theme="dark"] .calendar-header {
+  background: #0a0a0a;
+  border-color: rgba(249, 250, 251, 0.2);
+}
+.calendar-container[data-theme="dark"] .calendar-title h1 {
+  color: #f9fafb;
+}
+.calendar-container[data-theme="dark"] .btn {
+  background: #111827;
+  border-color: rgba(249, 250, 251, 0.2);
+  color: #f9fafb;
+}
+.calendar-container[data-theme="dark"] .btn:hover { background: #1f2937; }
+.calendar-container[data-theme="dark"] th,
+.calendar-container[data-theme="dark"] .time-cell {
+  background: #0a0a0a;
+  border-color: rgba(249, 250, 251, 0.2);
+  color: #f9fafb;
+}
+.calendar-container[data-theme="dark"] .calendar-cell {
+  border-color: rgba(249, 250, 251, 0.2);
+  background: #0a0a0a;
+}
+
+/* Auto theme respects system preference */
 @media (prefers-color-scheme: dark) {
-  .calendar-container {
-    background: #0a0a0a; /* inverse of gray-50 */
-    border-color: rgba(249, 250, 251, 0.2); /* gray-50/20 */
-  }
-  
-  .calendar-header {
+  .calendar-container[data-theme="auto"] {
     background: #0a0a0a;
     border-color: rgba(249, 250, 251, 0.2);
   }
-  
-  .calendar-title h1 {
-    color: #f9fafb; /* text-gray-50 */
-  }
-  
-  .btn {
-    background: #111827;
-    border-color: rgba(249, 250, 251, 0.2);
-    color: #f9fafb;
-  }
-  
-  .btn:hover {
-    background: #1f2937;
-  }
-  
-  th, .time-cell {
-    background: #0a0a0a;
-    border-color: rgba(249, 250, 251, 0.2);
-    color: #f9fafb;
-  }
-  
-  .calendar-cell {
-    border-color: rgba(249, 250, 251, 0.2);
-    background: #0a0a0a;
-  }
+  .calendar-container[data-theme="auto"] .calendar-header { background: #0a0a0a; border-color: rgba(249, 250, 251, 0.2); }
+  .calendar-container[data-theme="auto"] .calendar-title h1 { color: #f9fafb; }
+  .calendar-container[data-theme="auto"] .btn { background: #111827; border-color: rgba(249, 250, 251, 0.2); color: #f9fafb; }
+  .calendar-container[data-theme="auto"] .btn:hover { background: #1f2937; }
+  .calendar-container[data-theme="auto"] th,
+  .calendar-container[data-theme="auto"] .time-cell { background: #0a0a0a; border-color: rgba(249, 250, 251, 0.2); color: #f9fafb; }
+  .calendar-container[data-theme="auto"] .calendar-cell { background: #0a0a0a; border-color: rgba(249, 250, 251, 0.2); }
 }
 </style>

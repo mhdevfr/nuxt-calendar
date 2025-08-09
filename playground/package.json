@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "lucide-vue-next": "^0.536.0",
-    "nuxt-calendar-module": "^1.0.6"
+    "nuxt-calendar-module": "^1.0.8"
   }
 }

@@ -25,7 +25,7 @@
           :is-mobile="false"
           locale="en-US"
           timezone="Europe/Paris"
-          theme="auto"
+          :theme="currentTheme"
           @reservation-click="onReservationClick"
           @view-change="onViewChange"
           @date-change="onDateChange"
