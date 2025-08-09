@@ -117,7 +117,7 @@ const emit = defineEmits<{
   'reservations-updated': [reservations: Reservation[]]
 }>()
 
-const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const hours = [...props.workingHours.morning, ...props.workingHours.afternoon]
 const currentView = ref<'day' | 'week'>(props.isMobile ? 'day' : 'week')
 const currentDate = ref(new Date('2025-08-04'))

@@ -3,7 +3,7 @@
     <div class="max-w-6xl mx-auto p-8">
       <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
         <div class="flex items-center gap-2 lg:justify-between justify-end w-full">
-          <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Nuxt Calendar Module Playground</h1>
+          <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Nuxt Calendar Package Test</h1>
 
           <button 
           class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500 flex items-center gap-2"
@@ -16,12 +16,14 @@
       </div>
       
       <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 mb-8">
+        <ReservationModal :visible="detailsOpen" :reservation="selectedReservation" locale="en-US" @close="detailsOpen=false" />
+        <AddReservationModal :visible="addOpen" @close="addOpen=false" @submit="onNewReservation" />
         <CalendarComponent
           :reservations="sampleReservations"
           :events="events"
           :working-hours="workingHours"
           :is-mobile="false"
-          locale="fr-FR"
+          locale="en-US"
           timezone="Europe/Paris"
           theme="auto"
           @reservation-click="onReservationClick"
@@ -33,30 +35,30 @@
       </div>
 
       <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 mb-8">
-        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Utilisation du composable useCalendar</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Using the useCalendar composable</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-            <p class="text-sm text-gray-600 dark:text-gray-400">Mois actuel</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Current month</p>
             <p class="font-semibold text-lg text-gray-900 dark:text-gray-100">{{ monthName }} {{ currentYear }}</p>
           </div>
           <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-            <p class="text-sm text-gray-600 dark:text-gray-400">Date sélectionnée</p>
-            <p class="font-semibold text-lg text-gray-900 dark:text-gray-100">{{ selectedDate?.toLocaleDateString() || 'Aucune' }}</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Selected date</p>
+            <p class="font-semibold text-lg text-gray-900 dark:text-gray-100">{{ selectedDate?.toLocaleDateString() || 'None' }}</p>
           </div>
           <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-            <p class="text-sm text-gray-600 dark:text-gray-400">Nombre d'événements</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Number of events</p>
             <p class="font-semibold text-lg text-gray-900 dark:text-gray-100">{{ events.length }}</p>
           </div>
         </div>
         
         <div class="flex flex-wrap gap-2 mb-6">
-          <button @click="goToPreviousMonth" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">← Mois précédent</button>
-          <button @click="goToToday" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Aujourd'hui</button>
-          <button @click="goToNextMonth" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Mois suivant →</button>
-          <button @click="addSampleEvent" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Ajouter événement</button>
-          <button @click="addSampleReservation" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Ajouter réservation aléatoire</button>
-          <button @click="clearAllReservations" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Vider tout</button>
-          <button @click="showReservationsList" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Voir toutes les réservations ({{ sampleReservations.length }})</button>
+          <button @click="goToPreviousMonth" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">← Previous month</button>
+          <button @click="goToToday" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Today</button>
+          <button @click="goToNextMonth" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Next month →</button>
+          <button @click="addSampleEvent" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Add event</button>
+          <button @click="openAddModal" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Add reservation</button>
+          <button @click="clearAllReservations" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">Clear all</button>
+          <button @click="showReservationsList" class="px-4 py-2 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-gray-100 dark:text-gray-200 rounded-lg transition-colors border border-gray-600 dark:border-gray-500">View all reservations ({{ sampleReservations.length }})</button>
         </div>
         
         <div class="grid grid-cols-7 gap-2">
@@ -65,7 +67,7 @@
       </div>
 
       <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Configuration du module</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Module configuration</h2>
         <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm"><code class="text-gray-800 dark:text-gray-200">{{ JSON.stringify(config, null, 2) }}</code></pre>
       </div>
     </div>
@@ -78,9 +80,11 @@ import CalendarComponent from 'nuxt-calendar-module/runtime/components/Calendar.
 import SimpleCalendar from 'nuxt-calendar-module/runtime/components/SimpleCalendar.vue'
 import { useCalendar } from 'nuxt-calendar-module/runtime/composables/useCalendar'
 import { useReservationCalendar } from 'nuxt-calendar-module/runtime/composables/useReservationCalendar.js'
+import ReservationModal from '../src/runtime/components/ReservationModal.vue'
+import AddReservationModal from '../src/runtime/components/AddReservationModal.vue'
 
 const calendar = useCalendar({
-  locale: 'fr-FR'
+  locale: 'en-US'
 })
 
 const {
@@ -97,7 +101,7 @@ const {
 } = calendar
 
 const reservationCalendar = useReservationCalendar({
-  locale: 'fr-FR',
+  locale: 'en-US',
   timezone: 'Europe/Paris'
 })
 
@@ -245,7 +249,8 @@ onMounted(() => {
 
 
 function onReservationClick(reservation) {
-  // DO something
+  selectedReservation.value = reservation
+  detailsOpen.value = true
 }
 
 function onViewChange(view, date) {
@@ -257,7 +262,7 @@ function onDateChange(date) {
 }
 
 function onNewReservation(reservation) {
-  // DO something
+  sampleReservations.value.push(reservation)
 }
 
 function onReservationsUpdated(reservations) {
@@ -348,5 +353,15 @@ function showReservationsList() {
   })
   // DO something
 }
+
+const detailsOpen = ref(false)
+const selectedReservation = ref(null)
+const addOpen = ref(false)
+
+function openAddModal() {
+  addOpen.value = true
+}
 </script>
+
+
 

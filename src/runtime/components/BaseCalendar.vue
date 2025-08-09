@@ -33,7 +33,7 @@
           class="calendar-day"
           :class="{
             'calendar-day--other-month': !date.isCurrentMonth,
-            'calendar-day--today': date.isToday,
+            'calendar-day--today': date.isToday,  
             'calendar-day--selected': date.isSelected,
             'calendar-day--disabled': date.isDisabled
           }"
