@@ -3,8 +3,6 @@
 <!-- Badges will be available after first release -->
 <!-- [![npm version][npm-version-src]][npm-version-href] -->
 <!-- [![npm downloads][npm-downloads-src]][npm-downloads-href] -->
-[![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
 
 A modern and customizable calendar package for Vue 3 / Nuxt 3, born from the need to simplify complex scheduling components. This is a community package, not officially maintained by the Nuxt team.
 
