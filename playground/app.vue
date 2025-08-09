@@ -74,10 +74,10 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import CalendarComponent from 'nuxt-calendar-module/runtime/components/CalendarComponent.vue'
+import CalendarComponent from 'nuxt-calendar-module/runtime/components/Calendar.vue'
 import SimpleCalendar from 'nuxt-calendar-module/runtime/components/SimpleCalendar.vue'
 import { useCalendar } from 'nuxt-calendar-module/runtime/composables/useCalendar'
-import { useReservationCalendar } from 'nuxt-calendar-module/runtime/composables/useReservationCalendar'
+import { useReservationCalendar } from 'nuxt-calendar-module/runtime/composables/useReservationCalendar.js'
 
 const calendar = useCalendar({
   locale: 'fr-FR'
@@ -206,7 +206,7 @@ const workingHours = {
   afternoon: [14, 15, 16, 17]
 }
 
-const currentTheme = ref('auto')
+const currentTheme = ref('light')
 
 function toggleTheme() {
   if (currentTheme.value === 'dark') {

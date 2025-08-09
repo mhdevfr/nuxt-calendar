@@ -276,7 +276,7 @@ onMounted(() => {
   max-width: 1200px;
   margin: 0 auto;
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(10, 10, 10, 0.15);
   border-radius: 8px;
   overflow: hidden;
   font-family: system-ui, -apple-system, sans-serif;
@@ -388,11 +388,12 @@ th {
   border: 1px solid #e5e7eb;
   position: relative;
   vertical-align: top;
+  background: #f9fafb;
 }
 
 .reservation-card {
-  background: #1f2937;
-  color: white;
+  background: #09090b;
+  color: #f9fafb;
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;

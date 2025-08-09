@@ -52,7 +52,7 @@
                 <div
                   v-for="reservation in getReservationsForHour(hour)"
                   :key="reservation.id"
-                  class="reservation-card bg-gray-800 dark:bg-gray-700 text-white rounded cursor-pointer overflow-hidden transition-transform "
+                  class="reservation-card bg-gray-50 dark:bg-gray-700 text-gray-700 rounded cursor-pointer overflow-hidden transition-transform "
                   :style="getReservationStyle(reservation, hour)"
                   @click="handleReservationClick(reservation)"
                 >
@@ -66,7 +66,7 @@
                 <div
                   v-for="reservation in getReservationsForDayAndHour(index, hour)"
                   :key="reservation.id"
-                  class="reservation-card bg-gray-800 dark:bg-gray-700 text-white rounded cursor-pointer overflow-hidden transition-transform hover:opacity-80"
+                  class="reservation-card bg-gray-50 dark:bg-gray-700 text-gray-700 rounded cursor-pointer overflow-hidden transition-transform hover:opacity-80"
                   :style="getReservationStyle(reservation, hour)"
                   @click="handleReservationClick(reservation)"
                 >
