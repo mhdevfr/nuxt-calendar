@@ -275,8 +275,8 @@ onMounted(() => {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  background: white;
-  border: 1px solid rgba(10, 10, 10, 0.15);
+  background: #f9fafb; /* bg-gray-50 */
+  border: 1px solid rgba(10, 10, 10, 0.2); /* gray-950/20 */
   border-radius: 8px;
   overflow: hidden;
   font-family: system-ui, -apple-system, sans-serif;
@@ -287,8 +287,8 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  background: #f9fafb; /* gray-50 */
+  border-bottom: 1px solid rgba(10, 10, 10, 0.2); /* gray-950/20 */
   flex-wrap: wrap;
   gap: 0.5rem;
 }
@@ -297,7 +297,7 @@ onMounted(() => {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #374151;
+  color: #0a0a0a; /* text-gray-950 */
 }
 
 .calendar-controls {
@@ -308,8 +308,8 @@ onMounted(() => {
 
 .btn {
   padding: 0.5rem 1rem;
-  background: white;
-  border: 1px solid #d1d5db;
+  background: #ffffff;
+  border: 1px solid rgba(10, 10, 10, 0.2);
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.875rem;
@@ -359,25 +359,25 @@ onMounted(() => {
 
 th {
   padding: 0.75rem 0.5rem;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: #f9fafb; /* gray-50 */
+  border: 1px solid rgba(10, 10, 10, 0.2);
   font-weight: 600;
-  color: #374151;
+  color: #0a0a0a; /* text-gray-950 */
   font-size: 0.875rem;
 }
 
 .day-date {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #0a0a0a;
   font-weight: normal;
 }
 
 .time-cell {
   padding: 0.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(10, 10, 10, 0.2);
   background: #f9fafb;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #0a0a0a;
   text-align: center;
   vertical-align: top;
 }
@@ -385,7 +385,7 @@ th {
 .calendar-cell {
   height: 80px;
   padding: 2px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(10, 10, 10, 0.2);
   position: relative;
   vertical-align: top;
   background: #f9fafb;
@@ -581,37 +581,38 @@ th {
     
 @media (prefers-color-scheme: dark) {
   .calendar-container {
-    background: #1f2937;
-    border-color: #374151;
+    background: #0a0a0a; /* inverse of gray-50 */
+    border-color: rgba(249, 250, 251, 0.2); /* gray-50/20 */
   }
   
   .calendar-header {
-    background: #111827;
-    border-color: #374151;
+    background: #0a0a0a;
+    border-color: rgba(249, 250, 251, 0.2);
   }
   
   .calendar-title h1 {
-    color: #f9fafb;
+    color: #f9fafb; /* text-gray-50 */
   }
   
   .btn {
-    background: #374151;
-    border-color: #4b5563;
+    background: #111827;
+    border-color: rgba(249, 250, 251, 0.2);
     color: #f9fafb;
   }
   
   .btn:hover {
-    background: #4b5563;
+    background: #1f2937;
   }
   
   th, .time-cell {
-    background: #111827;
-    border-color: #374151;
-    color: #d1d5db;
+    background: #0a0a0a;
+    border-color: rgba(249, 250, 251, 0.2);
+    color: #f9fafb;
   }
   
   .calendar-cell {
-    border-color: #374151;
+    border-color: rgba(249, 250, 251, 0.2);
+    background: #0a0a0a;
   }
 }
 </style>
