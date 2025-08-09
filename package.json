@@ -59,10 +59,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/nuxt-module-calendar.git"
+    "url": "git+https://github.com/mhdevfr/nuxt-module-calendar.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/nuxt-module-calendar/issues"
+    "url": "https://github.com/mhdevfr/nuxt-module-calendar/issues"
   },
-  "homepage": "https://github.com/yourusername/nuxt-module-calendar#readme"
+  "homepage": "https://github.com/mhdevfr/nuxt-module-calendar#readme"
 }
